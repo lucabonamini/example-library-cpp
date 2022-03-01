@@ -1,5 +1,8 @@
 #pragma once
 
 namespace external_libraries {
-void ExternalLibraryA();
+class ExternalLibraryA {
+public:
+void print();
+};
 } // namespace external_libraries

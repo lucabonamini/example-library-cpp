@@ -3,7 +3,7 @@
 #include <iostream>
 
 namespace external_libraries {
-void ExternalLibraryA() {
+void ExternalLibraryA::print() {
 	std::cout << "This is external library A!" << std::endl;
 }
 } // namespace external_libraries
