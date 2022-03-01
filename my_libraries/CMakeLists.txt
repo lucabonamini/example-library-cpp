@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.15)
 
 project(my_libraries VERSION 1.0 LANGUAGES CXX)
 
-find_package(SomeLibraries 1.0 REQUIRED)
+find_package(ExternalLibraries 1.0 REQUIRED EXACT)
 
 add_library(MyLibraryA src/my_library_a.cpp)
 
@@ -14,9 +14,9 @@ target_include_directories(MyLibraryA
 
 target_link_libraries(MyLibraryA
   PUBLIC
-    SomeLibraries::SomeLibraryA
+    ExternalLibraries::ExternalLibraryA
   PRIVATE
-    SomeLibraries::SomeLibraryB
+    ExternalLibraries::ExternalLibraryB
 )
 
 install(TARGETS MyLibraryA
@@ -34,8 +34,8 @@ install(EXPORT MyLibraries-export
     lib/cmake/MyLibraries
 )
 
-install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/include/my_libraries/my_library_a.hpp
-        DESTINATION "include/my_libraries")
+install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/my_libraries
+        DESTINATION "include")
 
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/cmake/MyLibrariesConfig.cmake
         DESTINATION "lib/cmake/MyLibraries")
